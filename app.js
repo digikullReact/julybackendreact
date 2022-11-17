@@ -1,6 +1,8 @@
 const express=require("express");
 const app=express();
 const cors=require("cors");
+const { v4: uuidv4 } = require('uuid');
+
 app.use(cors());
 app.use(express.json());
 
@@ -51,16 +53,22 @@ app.get("/",(req,res)=>{
 })
 
 app.post("/add",(req,res)=>{
-    data.push(req.body);
+  let d=req.body;
+  d._id=uuidv4();
+    data.push(d);
     res.json({
         message:"Success"
     }).status(200)
 
 })
 
-app.delete("/delete/:id",(req,res)=>{
+app.delete("/delete/:sid",(req,res)=>{
+  let c=data.filter(function(ele){
 
-    data=data.filter(ele=>ele._id!=req.params.id);
+
+  })
+
+    data=data.filter(ele=>ele._id!=req.params.sid);
     res.json({
         message:"SuccessFully Deleted"
     }).status(200)
