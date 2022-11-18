@@ -52,6 +52,13 @@ app.get("/",(req,res)=>{
 
 })
 
+app.get("/single/:id",(req,res)=>{
+
+  let single=data.find(ele=>ele._id==req.params.id)
+  res.json(single);
+
+})
+
 app.post("/add",(req,res)=>{
   let d=req.body;
   d._id=uuidv4();
@@ -62,11 +69,21 @@ app.post("/add",(req,res)=>{
 
 })
 
+app.put("/edit/:id",(req,res)=>{
+  let d=req.body;
+ let  filtered_Data=data.filter(ele=>ele._id!=req.params.sid);
+ filtered_Data.push(d);
+
+ data=filtered_Data
+
+ res.json({
+  "message":"Data edited"
+ })
+
+})
+
 app.delete("/delete/:sid",(req,res)=>{
-  let c=data.filter(function(ele){
-
-
-  })
+ 
 
     data=data.filter(ele=>ele._id!=req.params.sid);
     res.json({
