@@ -71,7 +71,7 @@ app.post("/add",(req,res)=>{
 
 app.put("/edit/:id",(req,res)=>{
   let d=req.body;
- let  filtered_Data=data.filter(ele=>ele._id!=req.params.sid);
+ let  filtered_Data=data.filter(ele=>ele._id!=req.params.id);
  filtered_Data.push(d);
 
  data=filtered_Data
